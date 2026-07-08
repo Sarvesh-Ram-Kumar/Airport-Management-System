@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airport Management System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav id="navbar" class="hidden">
+        <span id="nav-welcome"></span>
+        <button onclick="logout()">Logout</button>
+    </nav>
+
+    <!-- LOGIN -->
+    <div id="view-login" class="view">
+        <div class="card">
+            <h2>Airport Management System</h2>
+            <p class="subtitle">Sign in to continue</p>
+            <input type="text" id="login-username" placeholder="Username">
+            <input type="password" id="login-password" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <p class="link" onclick="showView('view-signup')">
+                Don't have an account? Sign up
+            </p>
+            <p id="login-error" class="error"></p>
+        </div>
+    </div>
+
+    <!-- SIGNUP -->
+    <div id="view-signup" class="view hidden">
+        <div class="card">
+            <h2>Create Account</h2>
+            <input type="text" id="signup-name" placeholder="Full Name">
+            <input type="text" id="signup-username" placeholder="Username">
+            <input type="password" id="signup-password" placeholder="Password">
+            <select id="signup-role" onchange="toggleAirlinerFields()">
+                <option value="passenger">Passenger</option>
+                <option value="airliner">Airliner</option>
+                <option value="staff">Staff</option>
+            </select>
+
+            <!-- extra fields only shown for airliner role -->
+            <div id="airliner-fields" class="hidden">
+                <input type="text" id="signup-airline-name" placeholder="Airline Name">
+                <input type="text" id="signup-license" placeholder="License Number">
+                <input type="email" id="signup-email" placeholder="Contact Email">
+                <input type="text" id="signup-country" placeholder="Country">
+            </div>
+
+            <button onclick="signup()">Sign Up</button>
+            <p class="link" onclick="showView('view-login')">
+                Already have an account? Login
+            </p>
+            <p id="signup-error" class="error"></p>
+        </div>
+    </div>
+
+    <!-- PASSENGER DASHBOARD -->
+    <div id="view-passenger" class="view hidden">
+        <div class="container">
+            <h2>Available Flights</h2>
+            <div id="flights-list" class="grid"></div>
+
+            <h2>My Bookings</h2>
+            <div id="my-bookings" class="grid"></div>
+        </div>
+    </div>
+
+    <!-- AIRLINER DASHBOARD -->
+    <div id="view-airliner" class="view hidden">
+        <div class="container">
+            <h2>Request a Flight</h2>
+            <div class="card form-card">
+                <input type="text" id="f-flight-no" placeholder="Flight No (e.g. AI202)">
+                <input type="text" id="f-aircraft" placeholder="Aircraft Type (e.g. 747)">
+                <input type="text" id="f-origin" placeholder="Origin">
+                <input type="text" id="f-destination" placeholder="Destination">
+                <input type="date" id="f-date">
+                <input type="time" id="f-time">
+                <input type="text" id="f-gate" placeholder="Gate (e.g. G5)">
+                <input type="number" id="f-capacity" placeholder="Capacity">
+                <button onclick="requestFlight()">Submit Request</button>
+                <p id="flight-msg" class="success"></p>
+            </div>
+
+            <h2>My Flights</h2>
+            <div id="my-flights" class="grid"></div>
+        </div>
+    </div>
+
+    <!-- STAFF DASHBOARD -->
+    <div id="view-staff" class="view hidden">
+        <div class="container">
+            <h2>Pending Flight Requests</h2>
+            <div id="pending-flights" class="grid"></div>
+
+            <h2>All Bookings</h2>
+            <div id="all-bookings" class="grid"></div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

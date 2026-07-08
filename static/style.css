@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f1117;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+/* NAV */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background: #1a1d27;
+    border-bottom: 1px solid #2a2d3e;
+}
+
+nav span {
+    font-size: 1rem;
+    color: #a0a3b1;
+}
+
+nav button {
+    background: transparent;
+    border: 1px solid #e63946;
+    color: #e63946;
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background: #e63946;
+    color: white;
+}
+
+/* VIEWS */
+.view {
+    display: flex;
+    justify-content: center;
+    padding: 48px 16px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* CARD */
+.card {
+    background: #1a1d27;
+    border: 1px solid #2a2d3e;
+    border-radius: 12px;
+    padding: 36px;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card h2 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.card .subtitle {
+    color: #a0a3b1;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+/* INPUTS */
+input, select {
+    background: #0f1117;
+    border: 1px solid #2a2d3e;
+    color: #e0e0e0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+/* BUTTONS */
+button {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #357abd;
+}
+
+/* MESSAGES */
+.error   { color: #e63946; font-size: 0.85rem; }
+.success { color: #2dc653; font-size: 0.85rem; }
+.link    { color: #4a90e2; cursor: pointer; font-size: 0.875rem; text-align: center;}
+.link:hover { text-decoration: underline; }
+
+/* CONTAINER + GRID */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.container h2 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    border-bottom: 1px solid #2a2d3e;
+    padding-bottom: 8px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+/* FLIGHT / BOOKING CARDS */
+.item-card {
+    background: #1a1d27;
+    border: 1px solid #2a2d3e;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.item-card h3 {
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.item-card p {
+    color: #a0a3b1;
+    font-size: 0.85rem;
+}
+
+.item-card .status {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-pending   { background: #2a2000; color: #f4a500; }
+.status-approved  { background: #002a10; color: #2dc653; }
+.status-rejected  { background: #2a0000; color: #e63946; }
+.status-on_route  { background: #001a2a; color: #4a90e2; }
+.status-completed { background: #1a1a2a; color: #a0a3b1; }
+.status-cancelled { background: #2a0010; color: #e63946; }
+
+.form-card {
+    max-width: 500px;
+}
