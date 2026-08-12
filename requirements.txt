@@ -1,0 +1,6 @@
+Flask
+flask-cors
+python-dotenv
+mysql-connector-python
+bcrypt
+gunicorn
