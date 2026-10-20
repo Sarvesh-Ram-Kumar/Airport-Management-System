@@ -25,3 +25,7 @@ function toggleAirlinerFields() {
         ? fields.classList.remove('hidden') 
         : fields.classList.add('hidden');
 }
+
+function money(amount) {
+    return Number(amount).toFixed(2);
+}

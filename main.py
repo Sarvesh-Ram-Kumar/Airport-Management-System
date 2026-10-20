@@ -6,6 +6,7 @@ import os
 from routes.auth import auth
 from routes.flights import flights
 from routes.booking import bookings
+from routes.bank import bank
 
 load_dotenv()
 
@@ -17,7 +18,8 @@ app.secret_key = os.getenv("SECRET_KEY")
 
 app.register_blueprint(auth)
 app.register_blueprint(flights)  
-app.register_blueprint(bookings) 
+app.register_blueprint(bookings)
+app.register_blueprint(bank)
 
 # ─── SERVE FRONTEND ───────────────────────────────────────
 

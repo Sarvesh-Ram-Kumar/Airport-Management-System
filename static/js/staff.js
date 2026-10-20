@@ -10,6 +10,7 @@ async function loadPendingFlights() {
             <h3>${f.flight_no} — ${f.origin} → ${f.destination}</h3>
             <p>${f.airline_name} | ${f.flight_date} at ${f.flight_time}</p>
             <p>Aircraft: ${f.aircraft_type} | Gate: ${f.gate} | Capacity: ${f.capacity}</p>
+            <p>Price: ${money(f.price)}</p>
             ${statusBadge(f.status)}
             <div style="display:flex; gap:8px; margin-top:8px">
                 <button onclick="updateStatus(${f.flight_id}, 'approved')">Approve</button>

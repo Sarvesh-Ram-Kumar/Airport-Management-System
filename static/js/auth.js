@@ -25,6 +25,7 @@ async function signup() {
 
     if (res.ok) {
         showView('view-login');
+        document.getElementById('login-msg').textContent = data.message;
     } else {
         document.getElementById('signup-error').textContent = data.error;
     }
@@ -42,6 +43,7 @@ async function login() {
     const data = await res.json();
 
     if (res.ok) {
+        document.getElementById('login-msg').textContent = '';
         showNav(data.name);
         if (data.role === 'staff') {
             showView('view-staff');

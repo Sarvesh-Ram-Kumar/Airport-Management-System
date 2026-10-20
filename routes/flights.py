@@ -22,8 +22,8 @@ def request_flight():
         cursor.execute("""
             INSERT INTO flights 
             (flight_no, aircraft_type, origin, destination, 
-             flight_date, flight_time, gate, capacity, airliner_id)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+             flight_date, flight_time, gate, capacity, price, airliner_id)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             data["flight_no"],
             data["aircraft_type"],
@@ -33,6 +33,7 @@ def request_flight():
             data["flight_time"],
             data["gate"],
             data["capacity"],
+            data["price"],
             session["user_id"]
         ))
         conn.commit()
@@ -59,7 +60,7 @@ def my_flights():
     cursor = conn.cursor(dictionary=True)
     cursor.execute("""
         SELECT flight_id, flight_no, aircraft_type, origin, destination,
-               flight_date, flight_time, gate, capacity, status
+               flight_date, flight_time, gate, capacity, price, status
         FROM flights
         WHERE airliner_id = %s
         ORDER BY flight_date, flight_time
@@ -72,6 +73,7 @@ def my_flights():
     for f in flights:
         f["flight_date"] = str(f["flight_date"])
         f["flight_time"] = str(f["flight_time"])
+        f["price"]       = float(f["price"])
 
     return jsonify(flights), 200
 
@@ -90,7 +92,7 @@ def pending_flights():
     cursor.execute("""
         SELECT f.flight_id, f.flight_no, f.aircraft_type, f.origin, 
                f.destination, f.flight_date, f.flight_time, 
-               f.gate, f.capacity, f.status,
+               f.gate, f.capacity, f.price, f.status,
                a.airline_name
         FROM flights f
         JOIN airliner_details a ON f.airliner_id = a.airliner_id
@@ -104,6 +106,7 @@ def pending_flights():
     for f in flights:
         f["flight_date"] = str(f["flight_date"])
         f["flight_time"] = str(f["flight_time"])
+        f["price"]       = float(f["price"])
 
     return jsonify(flights), 200
 
@@ -153,7 +156,7 @@ def available_flights():
     cursor.execute("""
         SELECT f.flight_id, f.flight_no, f.aircraft_type,
                f.origin, f.destination, f.flight_date, f.flight_time,
-               f.gate, f.capacity, a.airline_name,
+               f.gate, f.capacity, f.price, a.airline_name,
                f.capacity - COUNT(b.booking_id) AS seats_remaining
         FROM flights f
         JOIN airliner_details a ON f.airliner_id = a.airliner_id
@@ -171,5 +174,6 @@ def available_flights():
     for f in flights:
         f["flight_date"] = str(f["flight_date"])
         f["flight_time"] = str(f["flight_time"])
+        f["price"]       = float(f["price"])
 
     return jsonify(flights), 200

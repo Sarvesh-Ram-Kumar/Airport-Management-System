@@ -25,14 +25,16 @@ def signup():
 
     cursor = conn.cursor(dictionary=True)
     try:
+        # user + airliner details are saved together or not at all
+        conn.start_transaction()
+
         cursor.execute("""
             INSERT INTO users (username, password_hash, role, name)
             VALUES (%s, %s, %s, %s)
         """, (username, password_hash, role, name))
-        conn.commit()
+        user_id = cursor.lastrowid
 
         if role == "airliner":
-            user_id       = cursor.lastrowid
             airline_name  = data["airline_name"]
             license_no    = data["license_no"]
             contact_email = data["contact_email"]
@@ -42,11 +44,12 @@ def signup():
                 (airliner_id, airline_name, license_no, contact_email, country)
                 VALUES (%s, %s, %s, %s, %s)
             """, (user_id, airline_name, license_no, contact_email, country))
-            conn.commit()
 
+        conn.commit()
         return jsonify({"message": "Signup successful"}), 201
 
     except Exception as e:
+        conn.rollback()
         return jsonify({"error": str(e)}), 400
     finally:
         cursor.close()

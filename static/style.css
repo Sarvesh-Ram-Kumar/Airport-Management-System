@@ -113,6 +113,19 @@ button:hover {
 .success { color: #2dc653; font-size: 0.85rem; }
 .link    { color: #4a90e2; cursor: pointer; font-size: 0.875rem; text-align: center;}
 .link:hover { text-decoration: underline; }
+.hint    { color: #a0a3b1; font-size: 0.8rem; margin-top: 6px; }
+
+#airliner-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* BANK */
+.txn-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.txn-list li { font-size: 0.85rem; color: #a0a3b1; }
+.txn-payment { color: #e63946; }
+.txn-refund  { color: #2dc653; }
 
 /* CONTAINER + GRID */
 .container {

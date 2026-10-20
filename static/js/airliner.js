@@ -13,6 +13,7 @@ async function requestFlight() {
             flight_time:  document.getElementById('f-time').value,
             gate:         document.getElementById('f-gate').value,
             capacity:     document.getElementById('f-capacity').value,
+            price:        document.getElementById('f-price').value,
         })
     });
     const data = await res.json();
@@ -38,7 +39,7 @@ async function loadMyFlights() {
             <h3>${f.flight_no} — ${f.origin} → ${f.destination}</h3>
             <p>${f.flight_date} at ${f.flight_time}</p>
             <p>Aircraft: ${f.aircraft_type} | Gate: ${f.gate}</p>
-            <p>Capacity: ${f.capacity}</p>
+            <p>Capacity: ${f.capacity} | Price: ${money(f.price)}</p>
             ${statusBadge(f.status)}
         </div>
     `).join('') || '<p>No flights yet</p>';
